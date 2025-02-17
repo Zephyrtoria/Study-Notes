@@ -2,7 +2,7 @@
 
 # 概述
 
-[MyBatis官网](https://mybatis.net.cn/)
+[MyBatis 官网](https://mybatis.net.cn/)
 
 ## 介绍
 
@@ -12,7 +12,7 @@ MyBatis 是一款优秀的持久层框架，它支持自定义 SQL、存储过�
 
 * JDBC
 
-  * SQL 夹杂在Java代码中耦合度高，导致硬编码内伤
+  * SQL 夹杂在 Java 代码中耦合度高，导致硬编码内伤
   * 维护不易且实际开发需求中 SQL 有变化，频繁修改的情况多见
   * 代码冗长，开发效率低
 * Hibernate 和 JPA
@@ -25,7 +25,7 @@ MyBatis 是一款优秀的持久层框架，它支持自定义 SQL、存储过�
 * MyBatis
 
   * 轻量级，性能出色
-  * SQL 和 Java 编码分开，功能边界清晰。Java代码专注业务、SQL语句专注数据
+  * SQL 和 Java 编码分开，功能边界清晰。Java 代码专注业务、SQL 语句专注数据
   * 开发效率稍逊于 Hibernate，但是完全能够接收
 
 开发效率：Hibernate\>Mybatis\>JDBC
@@ -61,10 +61,10 @@ INSERT INTO `t_emp`(emp_name,emp_salary) VALUES("andy",777.77);
 
 1. 项目搭建
 
-    ​![](https://secure2.wostatic.cn/static/vF2ubwBhNSqJE4ZkVSeTxL/image.png?auth_key=1726721176-4TkZ4hxNDLGd3rdT36GMZa-0-07db77113d96e077ffca85214a4a69d4)​
+   ​![](https://secure2.wostatic.cn/static/vF2ubwBhNSqJE4ZkVSeTxL/image.png?auth_key=1726721176-4TkZ4hxNDLGd3rdT36GMZa-0-07db77113d96e077ffca85214a4a69d4)​
 2. 依赖导入
 
-    pom.xml
+   pom.xml
 
 ```XML
 <dependencies>
@@ -110,15 +110,15 @@ public class Employee {
 
 ​![image](assets/image-20240919130208-w73z7rf.png)​
 
-#### Mapper接口
+#### Mapper 接口
 
 Mybatis 中的 Mapper 接口相当于以前的 Dao。
 
-但是区别在于，Mapper 仅仅只是建接口 (XxxDao) 即可，不需要提供实现类 (XxxDaoImpl)，具体的SQL写到对应的Mapper文件，该用法的思路如下图所示：
+但是区别在于，Mapper 仅仅只是建接口 (XxxDao) 即可，不需要提供实现类 (XxxDaoImpl)，具体的 SQL 写到对应的 Mapper 文件，该用法的思路如下图所示：
 
 ​![image](assets/image-20240919125239-7yjudoo.png)​
 
-> Mapper接口
+> Mapper 接口
 
 ```Java
 package com.atguigu.mapper;
@@ -145,19 +145,19 @@ public interface EmployeeMapper {
 }
 ```
 
-#### MapperXML文件
+#### MapperXML 文件
 
-MyBatis 框架下，SQL语句编写位置发生改变，从原来的Java类，改成**XML**或者注解定义
+MyBatis 框架下，SQL 语句编写位置发生改变，从原来的 Java 类，改成 **XML** 或者注解定义
 
-推荐在XML文件中编写SQL语句，让用户能更专注于 SQL 代码，不用关注其他的JDBC代码。
+推荐在 XML 文件中编写 SQL 语句，让用户能更专注于 SQL 代码，不用关注其他的 JDBC 代码。
 
-一般编写SQL语句的文件命名：XxxMapper.xml  Xxx一般取表名
+一般编写 SQL 语句的文件命名：XxxMapper.xml  Xxx 一般取表名
 
-* 方法名和SQL的id一致
-* 方法返回值和resultType一致
-* 方法的参数和SQL的参数一致
+* 方法名和 SQL 的 id 一致
+* 方法返回值和 resultType 一致
+* 方法的参数和 SQL 的参数一致
 * 接口的全类名和映射配置文件的名称空间一致
-* 注意：mapper中不能进行方法重载，会根据方法名进行操作
+* 注意：mapper 中不能进行方法重载，会根据方法名进行操作
 
 ```XML
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -193,13 +193,13 @@ MyBatis 框架下，SQL语句编写位置发生改变，从原来的Java类，�
 
 ```
 
-#### MyBatis配置文件
+#### MyBatis 配置文件
 
-mybatis框架配置文件：
+mybatis 框架配置文件：
 
 1. 数据库信息
 2. 性能配置（功能开关）
-3. mapper.xml配置
+3. mapper.xml 配置
 
 将来整合 Spring 之后，这个配置文件可以省略
 
@@ -240,7 +240,7 @@ mybatis框架配置文件：
 
 ### 测试
 
-以下代码之后会由Spring IoC实现
+以下代码之后会由 Spring IoC 实现
 
 ```Java
 package com.atguigu.test;
@@ -293,18 +293,18 @@ public class MyBatisTest {
 }
 ```
 
-* SqlSession：代表Java程序和数据库之间的会话。（HttpSession是Java程序和浏览器之间的会话）
-* SqlSessionFactory：是“生产”SqlSession的“工厂”。
+* SqlSession：代表 Java 程序和数据库之间的会话。（HttpSession 是 Java 程序和浏览器之间的会话）
+* SqlSessionFactory：是“生产”SqlSession 的“工厂”。
 * 工厂模式：如果创建某一个对象，使用的过程基本固定，那么我们就可以把创建这个对象的相关代码封装到一个“工厂类”中，以后都使用这个工厂类来“生产”我们需要的对象。
 
-#### SqlSession和HttpSession
+#### SqlSession 和 HttpSession
 
-* HttpSession：工作在Web服务器上，属于表述层。
+* HttpSession：工作在 Web 服务器上，属于表述层。
 
-  * 代表浏览器和Web服务器之间的会话。
-* SqlSession：不依赖Web服务器，属于持久化层。
+  * 代表浏览器和 Web 服务器之间的会话。
+* SqlSession：不依赖 Web 服务器，属于持久化层。
 
-  * 代表Java程序和数据库之间的会话。
+  * 代表 Java 程序和数据库之间的会话。
 
 ​![image](assets/image-20240919132147-fpf69s8.png)​
 
@@ -312,9 +312,9 @@ public class MyBatisTest {
 
 ### iBatis
 
-MyBatis是对iBatis的封装和优化
+MyBatis 是对 iBatis 的封装和优化
 
-使用MyBatis需要写mapper接口和配置文件，但是iBatis只需要写配置文件，不需要mapper接口
+使用 MyBatis 需要写 mapper 接口和配置文件，但是 iBatis 只需要写配置文件，不需要 mapper 接口
 
 > StudentMapper.xml
 
@@ -406,17 +406,17 @@ public void TestIBatis() throws IOException {
 
 缺点:
 
-1. SQL语句标签对应的字符串标识，容易写错
-2. Object参数只能传递一个，需要进行整合才能传递多个
-3. 返回值为Object，需要手动强转
+1. SQL 语句标签对应的字符串标识，容易写错
+2. Object 参数只能传递一个，需要进行整合才能传递多个
+3. 返回值为 Object，需要手动强转
 
 ### MyBatis
 
-比起iBatis，需要声明接口，来保证调用方法时不会出错
+比起 iBatis，需要声明接口，来保证调用方法时不会出错
 
 ​![image](assets/image-20240919143758-1wqh0bn.png)​
 
-MyBatis其实只是对iBatis进行了封装
+MyBatis 其实只是对 iBatis 进行了封装
 
 ```Java
 // 获取接口的代理对象 （动态代理）调用代理对象的方法，就会查找Mapper接口的方法
@@ -427,9 +427,9 @@ EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
 Employee employee = mapper.queryById(1);
 ```
 
-## MyBatis配置
+## MyBatis 配置
 
-[MyBatis配置](https://mybatis.net.cn/configuration.html)
+[MyBatis 配置](https://mybatis.net.cn/configuration.html)
 
 MyBatis 的配置文件包含了会深深影响 MyBatis 行为的设置和属性信息。 配置文档的顶层结构如下：
 
@@ -498,7 +498,7 @@ MyBatis 的配置文件包含了会深深影响 MyBatis 行为的设置和属性
 ### 日志输出设置
 
 |设置名|功能|有效值|默认值|
-| -----------| -------------------------------------------------------| -------------------------------------------------------------------------------------------------------| --------|
+| ---------| -----------------------------------------------------| -----------------------------------------------------------------| ------|
 |logPrefix|指定 MyBatis 增加到日志名称的前缀。|任何字符串|未设置|
 |logImpl|指定 MyBatis 所用日志的具体实现，未指定时将自动查找。|SLF4J \| **LOG4J** \| LOG4J2 \| JDK\_LOGGING \| COMMONS\_LOGGING \| **STDOUT_LOGGING** \| NO\_LOGGING|未设置|
 
@@ -540,27 +540,27 @@ MyBatis 的配置文件包含了会深深影响 MyBatis 行为的设置和属性
 </configuration>
 ```
 
-## 向SQL语句传参
+## 向 SQL 语句传参
 
 ### `#{}`​
 
-Mybatis会将SQL语句中的`#{}`​转换为**问号占位符**。（可以防止注入攻击）
+Mybatis 会将 SQL 语句中的 `#{}` ​转换为**问号占位符**。（可以防止注入攻击）
 
 ​![image](assets/image-20240919150308-f962ixk.png)​
 
 ### `${}`​
 
-​`${}`​形式传参，底层Mybatis做的是字符串**拼接**操作。
+​`${}` ​形式传参，底层 Mybatis 做的是字符串**拼接**操作。
 
 ​![image](assets/image-20240919150326-sl9pe72.png)​
 
-通常不会采用`${}`​的方式传值。
+通常不会采用 `${}` ​的方式传值。
 
-一个特定的适用场景是：通过Java程序动态生成数据库表，表名部分需要Java程序通过参数传入；而JDBC对于表名部分是不能使用问号占位符的，此时只能使用
+一个特定的适用场景是：通过 Java 程序动态生成数据库表，表名部分需要 Java 程序通过参数传入；而 JDBC 对于表名部分是不能使用问号占位符的，此时只能使用
 
-结论：实际开发中，能用`#{}`​实现的，肯定不用`${}`​。
+结论：实际开发中，能用 `#{}` ​实现的，肯定不用 `${}`​。
 
-特殊情况： 动态的不是值，是**列名**或者**关键字**，需要使用`${}`​拼接
+特殊情况： 动态的不是值，是**列名**或者**关键字**，需要使用 `${}` ​拼接
 
 ## 数据输入
 
@@ -570,7 +570,7 @@ Mybatis会将SQL语句中的`#{}`​转换为**问号占位符**。（可以防�
 
 ### 概念说明
 
-这里数据输入具体是指**上层方法**（例如Service方法）调用Mapper接口时，数据传入的形式。
+这里数据输入具体是指**上层方法**（例如 Service 方法）调用 Mapper 接口时，数据传入的形式。
 
 * 简单类型：只包含一个值的数据类型
 
@@ -615,11 +615,11 @@ int insertEmp(Employee employee);
 </insert>
 ```
 
-Mybatis会根据`#{}`​中传入的数据，加工成`getXxx()`​方法，通过反射在实体类对象中调用这个方法，从而获取到对应的数据。填充到`#{}`​解析后的问号占位符这个位置。
+Mybatis 会根据 `#{}` ​中传入的数据，加工成 `getXxx()` ​方法，通过反射在实体类对象中调用这个方法，从而获取到对应的数据。填充到 `#{}` ​解析后的问号占位符这个位置。
 
 ### 多个简单类型数据
 
-多个简单类型参数，如果没有特殊处理，那么Mybatis无法识别自定义名称
+多个简单类型参数，如果没有特殊处理，那么 Mybatis 无法识别自定义名称
 
 ​![image](assets/image-20240919152805-97hu4rj.png)
 
@@ -645,7 +645,7 @@ List<Employee> queryByNameAndSalary(@Param("a") String name, @Param("b") Double 
 </select>
 ```
 
-### Map类型数据
+### Map 类型数据
 
 ```Java
 // 插入员工数据：传入一个map(name = 员工名字, salary = 员工薪水)
@@ -659,7 +659,7 @@ int insertMap(Map data);
 </select>
 ```
 
-有很多零散的参数需要传递，但是没有对应的实体类类型可以使用时。使用@Param注解一个一个传入又太麻烦了。所以封装到Map中进行传递。
+有很多零散的参数需要传递，但是没有对应的实体类类型可以使用时。使用 @Param 注解一个一个传入又太麻烦了。所以封装到 Map 中进行传递。
 
 ## 数据输出
 
@@ -710,17 +710,17 @@ String queryNameById(Integer id);
 
 [类型别名](https://mybatis.net.cn/configuration.html#typeAliases)
 
-MyBatis提供了72种默认的别名，都是常用的Java数据类型，如果没有提供别名要么自己定义别名，要么使用第一种方法
+MyBatis 提供了 72 种默认的别名，都是常用的 Java 数据类型，如果没有提供别名要么自己定义别名，要么使用第一种方法
 
 1. 基本数据类型
 
-    int double -> _int _double
+   int double -> _int _double
 2. 包装数据类型
 
-    Integer Double -> int | integer double
+   Integer Double -> int | integer double
 3. 集合容器类型
 
-    Map List HashMap -> map list hashmap
+   Map List HashMap -> map list hashmap
 
 #### 自定义别名
 
@@ -778,11 +778,11 @@ Employee queryById(Integer id);
 </select>
 ```
 
-通过给数据库表字段加别名，让查询结果的每一列都和Java实体类中属性对应起来。
+通过给数据库表字段加别名，让查询结果的每一列都和 Java 实体类中属性对应起来。
 
 > 增加全局配置自动识别对应关系
 
-在 Mybatis 全局配置文件中，做了下面的配置，select语句中可以不给字段设置别名
+在 Mybatis 全局配置文件中，做了下面的配置，select 语句中可以不给字段设置别名
 
 ```XML
 <!-- 在全局范围内对Mybatis进行配置 -->
@@ -798,9 +798,9 @@ Employee queryById(Integer id);
 </settings>
 ```
 
-### 返回Map类型
+### 返回 Map 类型
 
-当没有实体类可以用来接收值的时候，可以使用Map接收数据
+当没有实体类可以用来接收值的时候，可以使用 Map 接收数据
 
 * key -> 查询的列
 * value -> 查询的值
@@ -822,11 +822,11 @@ Map<String, Object> selectEmpNameAndMaxSalary();
 </select>
 ```
 
-### 返回List类型
+### 返回 List 类型
 
-查询结果返回多个实体类对象，希望把多个实体类对象放在List集合中返回。此时不需要任何特殊处理，在resultType属性中还是设置实体类类型即可。
+查询结果返回多个实体类对象，希望把多个实体类对象放在 List 集合中返回。此时不需要任何特殊处理，在 resultType 属性中还是设置实体类类型即可。
 
-在底层，`selectOne`​调用了`selectList`​，所以并不需要指定返回List
+在底层，`selectOne` ​调用了 `selectList`​，所以并不需要指定返回 List
 
 ```Java
 // 返回List类型，所有salary > 200的员工姓名
@@ -893,7 +893,7 @@ public void test01() throws IOException {
 
 而对于不支持自增型主键的数据库（例如 Oracle）或者字符串类型主键，则可以使用 selectKey 子元素：selectKey 元素将会首先运行，id 会被设置，然后插入语句会被调用
 
-使用 `selectKey`​ 帮助插入UUID（时间戳）作为字符串类型主键:
+使用 `selectKey`​ 帮助插入 UUID（时间戳）作为字符串类型主键:
 
 > .sql
 
@@ -955,14 +955,14 @@ public void test02() throws IOException {
 
 列名和属性名不一致的解决方案：
 
-1.  起别名 select t_id tId, t_name tName from teacher where t_id = #{id}
-2. 在mybatis-config中开启驼峰式命名自动映射
-3. resultMap自定义映射  
+1. 起别名 select t_id tId, t_name tName from teacher where t_id = #{id}
+2. 在 mybatis-config 中开启驼峰式命名自动映射
+3. resultMap 自定义映射
 
-    1. resultType 按照规则（是否开启驼峰式）自动映射，只能映射一层结构，深层次的对象结构无法映射
-    2. resultMap
+   1. resultType 按照规则（是否开启驼峰式）自动映射，只能映射一层结构，深层次的对象结构无法映射
+   2. resultMap
 
-        两者二选一
+      两者二选一
 
 ```XML
 <!-- 声明resultMap标签，自己定义映射规则
@@ -981,11 +981,11 @@ public void test02() throws IOException {
 </select>
 ```
 
-## CRUD强化练习
+## CRUD 强化练习
 
 1. 准备数据库数据
 
-    首先，我们需要准备一张名为 `user`​ 的表。该表包含字段 id（主键）、username、password。创建SQL如下：
+   首先，我们需要准备一张名为 `user`​ 的表。该表包含字段 id（主键）、username、password。创建 SQL 如下：
 
 ```SQL
 CREATE TABLE `user` (
@@ -999,7 +999,7 @@ CREATE TABLE `user` (
 
 2. 实体类准备
 
-    接下来，我们需要定义一个实体类 `User`​，来对应 user 表的一行数据。
+   接下来，我们需要定义一个实体类 `User`​，来对应 user 表的一行数据。
 
 ```Java
 package com.atguigu.pojo;
@@ -1021,9 +1021,9 @@ public class User {
 }
 ```
 
-3. Mapper接口定义
+3. Mapper 接口定义
 
-    定义一个 Mapper 接口 `UserMapper`​，并在其中添加 user 表的增、删、改、查方法。
+   定义一个 Mapper 接口 `UserMapper`​，并在其中添加 user 表的增、删、改、查方法。
 
 ```Java
 package com.atguigu.mapper;
@@ -1054,9 +1054,9 @@ public interface UserMapper {
 }
 ```
 
-4. MapperXML编写
+4. MapperXML 编写
 
-    在 resources /mappers目录下创建一个名为 `UserMapper.xml`​ 的 XML 文件，包含与 Mapper 接口中相同的五个 SQL 语句，并在其中，将查询结果映射到 `User`​ 实体中。
+   在 resources /mappers 目录下创建一个名为 `UserMapper.xml`​ 的 XML 文件，包含与 Mapper 接口中相同的五个 SQL 语句，并在其中，将查询结果映射到 `User`​ 实体中。
 
 ```XML
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -1095,9 +1095,9 @@ public interface UserMapper {
 </mapper>
 ```
 
-5. MyBatis配置文件
+5. MyBatis 配置文件
 
-    位置：resources: mybatis-config.xml
+   位置：resources: mybatis-config.xml
 
 ```XML
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -1226,7 +1226,7 @@ public class MyBatisTest {
 }
 ```
 
-## mapperXML标签总结
+## mapperXML 标签总结
 
 MyBatis 的真正强大在于它的语句映射，这是它的魔力所在。由于它的异常强大，映射器的 XML 文件就显得相对简单。如果拿它跟具有相同功能的 JDBC 代码进行对比，你会立即发现省掉了将近 95% 的代码。MyBatis 致力于减少使用成本，让用户能更专注于 SQL 代码。
 
@@ -1262,7 +1262,7 @@ ps.setInt(1,id);
 select 元素允许你配置很多属性来配置每条语句的行为细节：
 
 |属性|描述|
-| ------| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ----| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |​`id`​|在命名空间中唯一的标识符，可以被用来引用这条语句。|
 |​`resultType`​|期望从这条语句中返回结果的类全限定名或别名。 注意，如果返回的是集合，那应该设置为集合包含的类型，而不是集合本身的类型。 resultType 和 resultMap 之间只能同时使用一个。|
 |​`resultMap`​|对外部 resultMap 的命名引用。结果映射是 MyBatis 最强大的特性，如果你对其理解透彻，许多复杂的映射问题都能迎刃而解。 resultType 和 resultMap 之间只能同时使用一个。|
@@ -1294,7 +1294,7 @@ select 元素允许你配置很多属性来配置每条语句的行为细节：
 ```
 
 |属性|描述|
-| ------| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ----| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |​`id`​|在命名空间中唯一的标识符，可以被用来引用这条语句。|
 |​`timeout`​|这个设置是在抛出异常之前，驱动程序等待数据库返回请求结果的秒数。默认值为未设置（unset）（依赖数据库驱动）。|
 |​`statementType`​|可选 STATEMENT，PREPARED 或 CALLABLE。这会让 MyBatis 分别使用 Statement，PreparedStatement 或 CallableStatement，默认值：PREPARED。|
@@ -1308,9 +1308,9 @@ select 元素允许你配置很多属性来配置每条语句的行为细节：
 
 ### 要点
 
-1. 多表查询SQL语句
+1. 多表查询 SQL 语句
 2. 多表结果承接实体类设计（VO）
-3. 使用`ResultMap`​完成多表结果映射（对象层次有多层）
+3. 使用 `ResultMap` ​完成多表结果映射（对象层次有多层）
 
 ### 实体类设计方案
 
@@ -1319,7 +1319,7 @@ select 元素允许你配置很多属性来配置每条语句的行为细节：
 * 一对一
 
   夫妻关系，人和身份证号
-* 一对多| 多对一 （可以转化为一对一关系）
+* 一对多 | 多对一 （可以转化为一对一关系）
 
   用户和用户的订单，锁和钥匙
 * 多对多
@@ -1386,7 +1386,7 @@ public class Order {
 
 > 数据库
 
-实际开发时，一般在开发过程中，不给数据库表设置外键约束。 原因是避免调试不方便。 一般是功能开发完成，再加外键约束检查是否有bug。
+实际开发时，一般在开发过程中，不给数据库表设置外键约束。 原因是避免调试不方便。 一般是功能开发完成，再加外键约束检查是否有 bug。
 
 ```SQL
 CREATE TABLE `t_customer` (`customer_id` INT NOT NULL AUTO_INCREMENT, `customer_name` CHAR(100), PRIMARY KEY (`customer_id`) );
@@ -1446,11 +1446,11 @@ public class Order {
 
 ## 对一映射
 
-* 需求说明：根据ID查询订单，以及订单关联的用户的信息
+* 需求说明：根据 ID 查询订单，以及订单关联的用户的信息
 
 ​![image](assets/image-20240927210503-61jke5s.png)​
 
-> Mapper接口
+> Mapper 接口
 
 ```Java
 package com.atguigu.mapper;
@@ -1608,7 +1608,7 @@ public class TestMultiTable {
 
 ```
 
-在“对一”关联关系中，配置比较多，但是关键词就只有：`association`​和`javaType`​
+在“对一”关联关系中，配置比较多，但是关键词就只有：`association` ​和 `javaType`​
 
 ## 对多映射
 
@@ -1616,7 +1616,7 @@ public class TestMultiTable {
 
 * 查询客户和客户关联的订单信息
 
-> CustomerMapper接口
+> CustomerMapper 接口
 
 ```Java
 package com.atguigu.mapper;
@@ -1685,24 +1685,24 @@ public void testRelationshipToMulti() {
 }
 ```
 
-在“对多”关联关系中，同样有很多配置，但是提炼出来最关键的就是：`collection`​和`ofType`​
+在“对多”关联关系中，同样有很多配置，但是提炼出来最关键的就是：`collection` ​和 `ofType`​
 
 ## 优化
 
-|setting属性|属性含义|可选值|默认值|
-| ---------------------| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| ---------------------| ---------|
+|setting 属性|属性含义|可选值|默认值|
+| -------------------| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| -------------------| -------|
 |autoMappingBehavior|指定 MyBatis 应如何自动映射列到字段或属性。 NONE 表示关闭自动映射；<br />PARTIAL 只会自动映射没有定义嵌套结果映射（第一层）的字段<br />FULL 会自动映射任何复杂的结果集（无论是否嵌套）<br />映射需要列名和属性名相同，或者开启驼峰式映射后使用驼峰式命名<br />|NONE, PARTIAL, FULL|PARTIAL|
 
-我们可以将`autoMappingBehavior`​设置为`full`​,进行多表resultMap映射的时候，可以省略符合列和属性命名映射规则（列名=属性名，或者开启驼峰映射也可以自定映射）的result标签！
+我们可以将 `autoMappingBehavior` ​设置为 `full`​,进行多表 resultMap 映射的时候，可以省略符合列和属性命名映射规则（列名=属性名，或者开启驼峰映射也可以自定映射）的 result 标签！
 
-修改mybati-sconfig.xml:
+修改 mybati-sconfig.xml:
 
 ```XML
 <!--开启resultMap自动映射 -->
 <setting name="autoMappingBehavior" value="FULL"/>
 ```
 
-修改teacherMapper.xml
+修改 teacherMapper.xml
 
 ```XML
 <resultMap id="teacherMap" type="teacher">
@@ -1721,9 +1721,9 @@ public void testRelationshipToMulti() {
 ## 总结
 
 |关联关系|配置项关键词|所在配置文件和具体位置|
-| ----------| -------------------------------------------| -----------------------------------|
-|对一|association标签/javaType属性/property属性|Mapper配置文件中的resultMap标签内|
-|对多|collection标签/ofType属性/property属性|Mapper配置文件中的resultMap标签内|
+| --------| --------------------------------------------| ------------------------------------|
+|对一|association 标签/javaType 属性/property 属性|Mapper 配置文件中的 resultMap 标签内|
+|对多|collection 标签/ofType 属性/property 属性|Mapper 配置文件中的 resultMap 标签内|
 
 # 动态语句
 
@@ -1731,7 +1731,7 @@ public void testRelationshipToMulti() {
 
 按照很多查询条件进行查询的情况，比如职位搜索等。其中经常出现很多条件不取值的情况。
 
-使用JDBC进行处理，需要对字符串进行拼接，需要考虑空格、逗号等，但使用MyBatis可以简化动态语句的书写
+使用 JDBC 进行处理，需要对字符串进行拼接，需要考虑空格、逗号等，但使用 MyBatis 可以简化动态语句的书写
 
 ## if / where
 
@@ -1808,14 +1808,14 @@ public void testRelationshipToMulti() {
 
 ## trim（了解）
 
-使用trim标签控制条件部分两端是否包含某些字符
+使用 trim 标签控制条件部分两端是否包含某些字符
 
-<where>和<set>其实就是<trim>的再封装
+<where> 和 <set> 其实就是 <trim> 的再封装
 
-* prefix属性：指定要动态添加的前缀
-* suffix属性：指定要动态添加的后缀
-* prefixOverrides属性：指定要动态去掉的前缀，使用`|`​分隔有可能的多个值
-* suffixOverrides属性：指定要动态去掉的后缀，使用`|`​分隔有可能的多个值
+* prefix 属性：指定要动态添加的前缀
+* suffix 属性：指定要动态添加的后缀
+* prefixOverrides 属性：指定要动态去掉的前缀，使用 `|` ​分隔有可能的多个值
+* suffixOverrides 属性：指定要动态去掉的后缀，使用 `|` ​分隔有可能的多个值
 
 ```XML
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -1844,14 +1844,14 @@ public void testRelationshipToMulti() {
 
 ## choose / when / otherwise
 
-其实就是switch语句
+其实就是 switch 语句
 
 在多个分支条件中，仅执行一个。
 
 * 从上到下依次执行条件判断
 * 遇到的第一个满足条件的分支会被采纳
 * 被采纳分支后面的分支都将不被考虑
-* 如果所有的when分支都不满足，那么就执行otherwise分支
+* 如果所有的 when 分支都不满足，那么就执行 otherwise 分支
 
 ```XML
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -1960,15 +1960,15 @@ public void testRelationshipToMulti() {
 
 **批量更新时需要注意**
 
-上面批量插入的例子本质上是一条SQL语句，而实现批量更新则需要多条SQL语句拼起来，用分号分开。也就是一次性发送多条SQL语句让数据库执行。此时需要在数据库连接信息的URL地址中设置：
+上面批量插入的例子本质上是一条 SQL 语句，而实现批量更新则需要多条 SQL 语句拼起来，用分号分开。也就是一次性发送多条 SQL 语句让数据库执行。此时需要在数据库连接信息的 URL 地址中设置：
 
 ```.properties
 atguigu.dev.url=jdbc:mysql:///mybatis-example?allowMultiQueries=true
 ```
 
-## sql片段
+## sql 片段
 
-抽取重复的SQL片段，并使用
+抽取重复的 SQL 片段，并使用
 
 ```XML
 <?xml version="1.0" encoding="UTF-8" ?>
@@ -1997,14 +1997,14 @@ atguigu.dev.url=jdbc:mysql:///mybatis-example?allowMultiQueries=true
 
 # 高级扩展
 
-## Mapper批量映射优化
+## Mapper 批量映射优化
 
 1. 需求
 
-    Mapper 配置文件很多时，在全局配置文件中一个一个注册太麻烦，希望有一个办法能够一劳永逸。
+   Mapper 配置文件很多时，在全局配置文件中一个一个注册太麻烦，希望有一个办法能够一劳永逸。
 2. 配置方式
 
-    Mybatis 允许在指定 Mapper 映射文件时，只指定其所在的包：
+   Mybatis 允许在指定 Mapper 映射文件时，只指定其所在的包：
 
 ```XML
 <!--
@@ -2016,7 +2016,7 @@ atguigu.dev.url=jdbc:mysql:///mybatis-example?allowMultiQueries=true
 </mappers>
 ```
 
-此时这个包下的所有 Mapper 配置文件将被自动加载、注册，比较方便。  
+此时这个包下的所有 Mapper 配置文件将被自动加载、注册，比较方便。
 3. 资源创建要求
 
 * Mapper 接口和 Mapper 配置文件名称一致
@@ -2025,18 +2025,18 @@ atguigu.dev.url=jdbc:mysql:///mybatis-example?allowMultiQueries=true
   * Mapper 配置文件：EmployeeMapper.xml
 * Mapper 配置文件放在 Mapper 接口所在的包内
 
-  1. 可以将mapperxml文件放在mapper接口所在的包
+  1. 可以将 mapperxml 文件放在 mapper 接口所在的包
 
-      需要修改pom.xml的打包方式，比较麻烦
-  2. 可以在sources下创建mapper接口包一致的文件夹结构存放mapper.xml文件
+     需要修改 pom.xml 的打包方式，比较麻烦
+  2. 可以在 sources 下创建 mapper 接口包一致的文件夹结构存放 mapper.xml 文件
 
-      注意：创建多层文件夹需要使用`/`​分割
+     注意：创建多层文件夹需要使用 `/` ​分割
 
   ​![](assets/network-asset-image-20240928150957-5nde39b.png)​
 
   ​![](assets/network-asset-image-20240928150957-wo6tb6k.png)​
 
-## 插件和分页插件PageHelper
+## 插件和分页插件 PageHelper
 
 ### 插件机制
 
@@ -2054,7 +2054,7 @@ MyBatis 对插件进行了标准化的设计，并提供了一套可扩展的插
 
 PageHelper 是 MyBatis 中比较著名的分页插件，它提供了多种分页方式（例如 MySQL 和 Oracle 分页方式），支持多种数据库，并且使用非常简单
 
-> 原生SQL
+> 原生 SQL
 
 ​`limit x, y;`​
 
@@ -2063,14 +2063,14 @@ PageHelper 是 MyBatis 中比较著名的分页插件，它提供了多种分页
 
 > PageHelper
 
-* 不需要添加`limit`​
-* 不需要使用`;`​结尾
+* 不需要添加 `limit`​
+* 不需要使用 `;` ​结尾
 
 插件会拦截语句，并插入分页相关代码
 
 #### 使用
 
-1. pom.xml引入依赖
+1. pom.xml 引入依赖
 
 ```XML
 <dependency>
@@ -2081,11 +2081,11 @@ PageHelper 是 MyBatis 中比较著名的分页插件，它提供了多种分页
 
 ```
 
-2. mybatis-config.xml配置分页插件
+2. mybatis-config.xml 配置分页插件
 
 在 MyBatis 的配置文件中添加 PageHelper 的插件
 
-注意位置，可以点击configuration查看
+注意位置，可以点击 configuration 查看
 
 ```XML
 <plugins>
@@ -2101,8 +2101,8 @@ PageHelper 是 MyBatis 中比较著名的分页插件，它提供了多种分页
 
 注意：
 
-* 不要添加limit
-* 不要添加`;`​
+* 不要添加 limit
+* 不要添加 `;`​
 
 > 在查询方法中使用分页
 
@@ -2136,7 +2136,7 @@ public void test() {
 
 注意：如果需要修改分页数据，需要重新进行查询操作
 
-## 逆向工程和MyBatisX插件
+## 逆向工程和 MyBatisX 插件
 
 ### ORM
 
@@ -2160,7 +2160,7 @@ public void test() {
 
 常见的半自动 ORM 框架包括 MyBatis 等；常见的全自动 ORM 框架包括 Hibernate、Spring Data JPA、MyBatis-Plus 等。
 
-由于编写的自由度和优化水平，现在结合了半自动和全自动ORM框架的实现，也就是逆向工程
+由于编写的自由度和优化水平，现在结合了半自动和全自动 ORM 框架的实现，也就是逆向工程
 
 ## 逆向工程
 
@@ -2175,39 +2175,39 @@ MyBatis 的逆向工程有两种方式：
 
 总的来说，MyBatis 的逆向工程为程序员提供了一种方便快捷的方式，能够快速地生成持久层代码和映射文件，是半自动 ORM 思维像全自动发展的过程，提高程序员的开发效率。
 
-注意：逆向工程只能生成**单表crud**的操作，多表查询依然需要我们自己编写
+注意：逆向工程只能生成**单表 crud** 的操作，多表查询依然需要我们自己编写
 
-## 逆向工程插件MyBatis
+## 逆向工程插件 MyBatis
 
 MyBatisX 是一个 MyBatis 的代码生成插件，可以通过简单的配置和操作快速生成 MyBatis Mapper、pojo 类和 Mapper.xml 文件。下面是使用 MyBatisX 插件实现逆向工程的步骤：
 
 1. 安装插件：
 
-    在 IntelliJ IDEA 中打开插件市场，搜索 MyBatisX 并安装。
-2. 使用 IntelliJ IDEA连接数据库
+   在 IntelliJ IDEA 中打开插件市场，搜索 MyBatisX 并安装。
+2. 使用 IntelliJ IDEA 连接数据库
 
-    * 连接数据库
+   * 连接数据库
 
-      ​![](assets/network-asset-image-20240929193058-ws5gi1g.png)​
-    * 填写信息
+     ​![](assets/network-asset-image-20240929193058-ws5gi1g.png)​
+   * 填写信息
 
-      ​![](assets/network-asset-image-20240929193058-d4pt1eh.png)​
-    * 展示库表
+     ​![](assets/network-asset-image-20240929193058-d4pt1eh.png)​
+   * 展示库表
 
-      ​![](assets/network-asset-image-20240929193058-ekmw04z.png)​
-    * 逆向工程使用
+     ​![](assets/network-asset-image-20240929193058-ekmw04z.png)​
+   * 逆向工程使用
 
-      ​![](assets/network-asset-image-20240929193058-5aa89lj.png)​
+     ​![](assets/network-asset-image-20240929193058-5aa89lj.png)​
 
-      ​![](assets/network-asset-image-20240929193059-xn60ukf.png)​
+     ​![](assets/network-asset-image-20240929193059-xn60ukf.png)​
 
-      ​![](assets/network-asset-image-20240929193059-lifmb74.png)​
+     ​![](assets/network-asset-image-20240929193059-lifmb74.png)​
 3. 查看生成结果
 
-    ​![](assets/network-asset-image-20240929193059-5rd1fuk.png)​
+   ​![](assets/network-asset-image-20240929193059-5rd1fuk.png)​
 4. 逆向工程案例使用
 
-    正常使用即可，自动生成单表的crud方法！
+   正常使用即可，自动生成单表的 crud 方法！
 
 ```Java
 package com.atguigu.mapper;
@@ -2241,10 +2241,10 @@ public interface UserMapper {
 # 总结
 
 |核心点|掌握目标|
-| -----------------| -----------------------------------------------|
-|mybatis基础|使用流程, 参数输入,#{} \${},参数输出|
-|mybatis多表|实体类设计,resultMap多表结果映射|
-|mybatis动态语句|Mybatis动态语句概念, where , if , foreach标签|
-|mybatis扩展|Mapper批量处理,分页插件,逆向工程|
+| ----------------| -----------------------------------------------|
+|mybatis 基础|使用流程, 参数输入,#{} \${},参数输出|
+|mybatis 多表|实体类设计,resultMap 多表结果映射|
+|mybatis 动态语句|Mybatis 动态语句概念, where , if , foreach 标签|
+|mybatis 扩展|Mapper 批量处理,分页插件,逆向工程|
 
 ‍

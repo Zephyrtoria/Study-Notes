@@ -6,26 +6,26 @@
 
 ​![image](assets/image-20240527161128-df672s0.png)​
 
-不管使用什么数据库，操作语言都是SQL
+不管使用什么数据库，操作语言都是 SQL
 
 ## 使用
 
 ### 启动和停止
 
-在Win + R中输入`services.msc`​或在命令行（管理员模式）中输入：
+在 Win + R 中输入 `services.msc` ​或在命令行（管理员模式）中输入：
 
 ```bash
 net start mysql80
 net stop mysql80
 ```
 
-注意：此处mysql80是在安装时指定的名称
+注意：此处 mysql80 是在安装时指定的名称
 
 ### 客户端连接
 
-* 方法一：MySQL提供的客户端命令行工具
+* 方法一：MySQL 提供的客户端命令行工具
 
-  * 在菜单栏中寻找MySQL Command Line Client
+  * 在菜单栏中寻找 MySQL Command Line Client
   * 启动后输入密码
   * ​![image](assets/image-20240529211555-t4sabgt.png)​
 
@@ -74,7 +74,7 @@ DBMS：一个数据库管理系统
 
 ​![image](assets/image-20240531155635-ls5romu.png)​
 
-## 使用SQL代码
+## 使用 SQL 代码
 
 ​![image](assets/image-20240531155825-ltxgutu.png)​
 
@@ -92,7 +92,7 @@ DBMS：一个数据库管理系统
 
 无符号表示需要写在类型后方，如：`int unsigned`​
 
-对于浮点数需要设置精度和标度，精度是数字最长整体长度，标度是保留小数点位数，如：`double(4,1)`​，整数3位，小数1位
+对于浮点数需要设置精度和标度，精度是数字最长整体长度，标度是保留小数点位数，如：`double(4,1)`​，整数 3 位，小数 1 位
 
 ### 字符串类型
 
@@ -102,7 +102,7 @@ BOLB：表示二进制数据
 
 TEXT：表示文本数据
 
-​`char(10)`​ 不管存储多少字符都会占用10个字节，空位置使用空格占位。性能较好
+​`char(10)`​ 不管存储多少字符都会占用 10 个字节，空位置使用空格占位。性能较好
 
 ​`varchar(10)`​ 表示最长字符串长度，随着数据长度占用字节数也不同。性能较差
 
@@ -295,7 +295,7 @@ insert into 表名 values(值1, 值2, ...), (值1, 值2, ...), (值1, 值2, ...)
 update 表名 set 字段名1 = 值1, 字段名2 = 值2, ... [where 条件];
 ```
 
-where是条件，如果不添加则会修改表内的全部内容
+where 是条件，如果不添加则会修改表内的全部内容
 
 ### 删除数据
 
@@ -303,9 +303,9 @@ where是条件，如果不添加则会修改表内的全部内容
 delete from 表名 [where 条件];
 ```
 
-where是条件，如果不添加则会删除表内的全部内容
+where 是条件，如果不添加则会删除表内的全部内容
 
-delete不能删除某一个字段的值（可以使用update）
+delete 不能删除某一个字段的值（可以使用 update）
 
 ## DQL
 
@@ -359,7 +359,7 @@ select 字段名1, 字段名2, ... from 表名;
 select 字段名1 [as 别名1], 字段名2 [as 别名2], ... from 表名;
 ```
 
-as可以省略，可以优化展示的表
+as 可以省略，可以优化展示的表
 
 #### 去重
 
@@ -392,7 +392,7 @@ select * from emp where idcard like '%x'; -- 前面任意个字符，但最后�
 
 都是作用于表中的某一列
 
-所有的null都不参与聚合函数运算
+所有的 null 都不参与聚合函数运算
 
 ```SQL
 select 聚合函数(字段列表) from 表名;
@@ -687,7 +687,7 @@ select * from a, b;
 select * from a, b where a.id = b.id;
 ```
 
-但是id对应的值如果为null的话不会被放入
+但是 id 对应的值如果为 null 的话不会被放入
 
 ## 多表关系
 
@@ -707,7 +707,7 @@ select * from a, b where a.id = b.id;
 
 ​![image](assets/image-20240601135604-wiv7wxs.png)​
 
-添加了`unique`​关键字，使得表内数据为一对一的关系
+添加了 `unique` ​关键字，使得表内数据为一对一的关系
 
 ## 查询分类
 
@@ -739,13 +739,13 @@ select e.name, d.name from emp e inner join dept d on e.dept_id = d.id;
 
 查询某一个表的所有数据以及两个表的交集部分
 
-左外连接和右外连接只需要修改表1和表2的位置，一般使用左外连接
+左外连接和右外连接只需要修改表 1 和表 2 的位置，一般使用左外连接
 
 ### 左外连接
 
-查询表1的所有数据，包含表1和表2交集部分的数据
+查询表 1 的所有数据，包含表 1 和表 2 交集部分的数据
 
-也就是如果某条数据的连接数据为null，也可以输出
+也就是如果某条数据的连接数据为 null，也可以输出
 
 ```SQL
 select 字段列表 from 表1 left [outer] join 表2 on 条件;
@@ -755,7 +755,7 @@ select e.* d.name from emp e left outer join dept d on e.dept_id = d.id;
 
 ### 右外连接
 
-查询表2的所有数据，包含表1和表2交集部分的数据
+查询表 2 的所有数据，包含表 1 和表 2 交集部分的数据
 
 ```SQL
 select 字段列表 from 表1 right [outer] join 表2 on 条件;
@@ -767,7 +767,7 @@ select 字段列表 from 表1 right [outer] join 表2 on 条件;
 
 比如员工和领导（当领导也属于员工时），判断员工和领导的从属关系
 
-可以是内连接（如果不需要为null的数据），也可以是外连接（如果需要为null的数据）
+可以是内连接（如果不需要为 null 的数据），也可以是外连接（如果需要为 null 的数据）
 
 必须要起别名
 
@@ -781,9 +781,9 @@ select a.name, b.name from emp a left join emp b on a.managerid = b.id;
 
 ## 联合查询
 
-功能上和or一致，但是or用于单表查询，union用于多表查询
+功能上和 or 一致，但是 or 用于单表查询，union 用于多表查询
 
-union会去重，union all不会去重
+union 会去重，union all 不会去重
 
 需要满足两个字段列表（列数，字段类型）相同
 
@@ -842,7 +842,7 @@ select * from emp where dept_id in (1, 2);
 select * from emp where dept_id in (select id from dept where name = '销售部' or name = '市场部');
 ```
 
-注意：where后面不能使用聚合函数，比如要判断大于最大值，需要写:
+注意：where 后面不能使用聚合函数，比如要判断大于最大值，需要写:
 
 ```SQL
 select * from emp where salary > all (select salary from ...);
@@ -907,7 +907,7 @@ select e.*, d.* from (select * from emp where entrydate > '2024-06-01') e left j
 
 ​![image](assets/image-20240601210519-lvw0g0z.png)​
 
-默认MySQL的事务是自动提交的
+默认 MySQL 的事务是自动提交的
 
 ## 事务操作
 
@@ -980,13 +980,13 @@ rollback;
 
 ## 事务隔离级别
 
-√是存在这样的问题
+√ 是存在这样的问题
 
 ​![image](assets/image-20240602154559-ikqviel.png)​
 
 事务隔离级别越高，数据越安全，但是性能越低
 
-Serializable相当于多线程中的锁
+Serializable 相当于多线程中的锁
 
 ### 查看/设置事务隔离级别
 
